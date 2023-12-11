@@ -228,6 +228,13 @@ namespace CreateRecords
 
 				if (st.Count > idx++ && st[51].Length == 5)
 					rec.HighHumidexTime = GetDateTime(rec.Date, st[51]);
+
+				if (st.Count > idx++ && double.TryParse(st[53], out varDbl))
+					rec.HighRain24h = varDbl;
+
+				if (st.Count > idx++ && st[54].Length == 5)
+					rec.HighRain24hTime = GetDateTime(rec.Date, st[54]);
+
 			}
 			catch (Exception ex)
 			{

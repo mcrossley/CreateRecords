@@ -24,6 +24,9 @@ namespace CreateRecords
 		public double NOAAheatingthreshold;
 		public double NOAAcoolingthreshold;
 
+		public const double DefaultHiVal = -9999;
+		public const double DefaultLoVal = 9999;
+
 		private StationOptions StationOptions = new StationOptions();
 		internal StationUnits Units = new StationUnits();
 		private int[] WindDPlaceDefaults = { 1, 0, 0, 0 }; // m/s, mph, km/h, knots

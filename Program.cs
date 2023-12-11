@@ -15,28 +15,28 @@ namespace CreateRecords
 		private static ThisYear thisYear;
 		private static AllTime allTime;
 
-        private static ConsoleColor defConsoleColour;
+		private static ConsoleColor defConsoleColour;
 
-        static void Main()
+		static void Main()
 		{
 
 			TextWriterTraceListener myTextListener = new TextWriterTraceListener($"MXdiags{Path.DirectorySeparatorChar}CreateRecords-{DateTime.Now:yyyyMMdd-HHmmss}.txt", "CMlog");
 			Trace.Listeners.Add(myTextListener);
 			Trace.AutoFlush = true;
 
-            defConsoleColour = Console.ForegroundColor;
+			defConsoleColour = Console.ForegroundColor;
 
-            var fullVer = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
+			var fullVer = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version;
 			var version = $"{fullVer.Major}.{fullVer.Minor}.{fullVer.Build}";
 			LogMessage("CreateRecords v." + version);
 			Console.WriteLine("CreateRecords v." + version);
 
 			LogMessage("Processing started");
 			Console.WriteLine();
-            Console.WriteLine($"Processing started: {DateTime.Now:U}");
-            Console.WriteLine();
+			Console.WriteLine($"Processing started: {DateTime.Now:U}");
+			Console.WriteLine();
 
-            cumulus = new Cumulus();
+			cumulus = new Cumulus();
 
 			// load existing day file
 			dayfile = new DayFile();
@@ -64,9 +64,9 @@ namespace CreateRecords
 			if (dayfileStart >= DateTime.Today)
 			{
 				LogMessage("Start date is today!???");
-                LogConsole("Start date is today!???", ConsoleColor.Cyan);
-                LogConsole("Press any key to exit", ConsoleColor.DarkYellow);
-                Console.ReadKey(true);
+				LogConsole("Start date is today!???", ConsoleColor.Cyan);
+				LogConsole("Press any key to exit", ConsoleColor.DarkYellow);
+				Console.ReadKey(true);
 				Console.WriteLine("Exiting...");
 
 				Environment.Exit(1);
@@ -88,6 +88,8 @@ namespace CreateRecords
 
 			foreach (var day in dayfile.DayfileRecs)
 			{
+				LogConsole(new String('\b', Console.BufferWidth), ConsoleColor.Black, false);
+				LogConsole($"\bProcessing {day.Date:d} ...", ConsoleColor.Gray, false);
 				DoHighTemp(day.HighTemp, day.HighTempTime);
 				DoLowTemp(day.LowTemp, day.LowTempTime);
 
@@ -185,26 +187,26 @@ namespace CreateRecords
 				DoDryDays(dryDays, currDryWetDay);
 
 
+
 			// create the new dayfile.txt with a different name
-			LogMessage("Saving new records xxxx.ini files");
-			Console.WriteLine();
-            Console.WriteLine("Saving new Saving new records xxxx.ini files");
+			LogMessage("Saving new records .ini files");
+			Console.WriteLine("\n");
 
 			thisMonth.WriteIniFile();
 			thisYear.WriteIniFile();
 			allTime.WriteIniFile();
 			monthly.WriteIniFile();
 
-			LogMessage("Created new records xxxx.ini files, the old versions are saved as xxxx.ini.sav");
-			Console.WriteLine("Created new records .ini files, the old versions are saved as xxxx.ini.sav");
+			LogMessage("Created new records .ini files, the old versions are saved as xxxx.ini.sav");
+			Console.WriteLine("\nCreated new records .ini files, the old versions are saved as xxxx.ini.sav");
 
 
 			LogMessage("Processing complete.");
 			Console.WriteLine();
 			Console.WriteLine();
-            Console.WriteLine("Processing complete.");
-            LogConsole("Press any key to exit", ConsoleColor.DarkYellow);
-            Console.ReadKey(true);
+			Console.WriteLine("\nProcessing complete.");
+			LogConsole("Press any key to exit", ConsoleColor.DarkYellow);
+			Console.ReadKey(true);
 		}
 
 		public static void LogMessage(string message)
@@ -212,23 +214,23 @@ namespace CreateRecords
 			Trace.WriteLine(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff ") + message);
 		}
 
-        public static void LogConsole(string msg, ConsoleColor colour, bool newLine = true)
-        {
-            Console.ForegroundColor = colour;
+		public static void LogConsole(string msg, ConsoleColor colour, bool newLine = true)
+		{
+			Console.ForegroundColor = colour;
 
-            if (newLine)
-            {
-                Console.WriteLine(msg);
-            }
-            else
-            {
-                Console.Write(msg);
-            }
+			if (newLine)
+			{
+				Console.WriteLine(msg);
+			}
+			else
+			{
+				Console.Write(msg);
+			}
 
-            Console.ForegroundColor = defConsoleColour;
-        }
+			Console.ForegroundColor = defConsoleColour;
+		}
 
-        private static void DoHighTemp(double val, DateTime time)
+		private static void DoHighTemp(double val, DateTime time)
 		{
 			if (allTime.Recs.HighTemperature.CheckHighRecord(val, time))
 				LogMessage($"Date {time:d} Set new all time high temperature {val.ToString(cumulus.TempFormat)}, time {time:t}");
@@ -694,22 +696,22 @@ namespace CreateRecords
 		private static void DoHigh24hRain(double val, DateTime time)
 		{
 			if (allTime.Recs.High24hRain.CheckHighRecord(val, time))
-                LogMessage($"Date {time:d} Set new all time high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
+				LogMessage($"Date {time:d} Set new all time high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
 
-            if (monthly.Recs[time.Month].High24hRain.CheckHighRecord(val, time))
-                LogMessage($"Date {time:d} Set new monthly high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
+			if (monthly.Recs[time.Month].High24hRain.CheckHighRecord(val, time))
+				LogMessage($"Date {time:d} Set new monthly high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
 
-            if (time.Year == DateTime.Now.Year)
-            {
-                if (thisYear.Recs.High24hRain.CheckHighRecord(val, time))
-                    LogMessage($"Date {time:d} Set new this year high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
+			if (time.Year == DateTime.Now.Year)
+			{
+				if (thisYear.Recs.High24hRain.CheckHighRecord(val, time))
+					LogMessage($"Date {time:d} Set new this year high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
 
-                if (time.Month == DateTime.Now.Month && thisMonth.Recs.High24hRain.CheckHighRecord(val, time))
-                    LogMessage($"Date {time:d} Set new this month high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
-            }
-        }
+				if (time.Month == DateTime.Now.Month && thisMonth.Recs.High24hRain.CheckHighRecord(val, time))
+					LogMessage($"Date {time:d} Set new this month high 24 hr rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
+			}
+		}
 
-        private static void DoHighMonthlyRain(double val, DateTime time)
+		private static void DoHighMonthlyRain(double val, DateTime time)
 		{
 			if (allTime.Recs.HighMonthlyRain.CheckHighRecord(val, time))
 				LogMessage($"Date {time:d} Set new all time high daily rain {val.ToString(cumulus.RainFormat)}, time {time:t}");
@@ -801,6 +803,5 @@ namespace CreateRecords
 				}
 			}
 		}
-
 	}
 }

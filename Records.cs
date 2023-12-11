@@ -49,48 +49,48 @@ namespace CreateRecords
 
 		public Records()
 		{
-			HighTemperature = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowTemperature = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighTemperature = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowTemperature = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighDewPoint = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowDewPoint = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighDewPoint = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowDewPoint = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighApparant = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowApparant = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighApparant = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowApparant = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighFeelsLike = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowFeelsLike = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighFeelsLike = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowFeelsLike = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			LowWindChill = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			LowWindChill = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighHeatIndex = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
+			HighHeatIndex = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
 
-			HighHumidex = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
+			HighHumidex = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
 
-			HighMinTemp = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowMaxTemp = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighMinTemp = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowMaxTemp = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighHumidity = new Record(-9999);
-			LowHumidity = new Record(9999);
+			HighHumidity = new Record((int) Cumulus.DefaultHiVal);
+			LowHumidity = new Record((int)Cumulus.DefaultLoVal);
 
-			HighDailyRange = new Record(-9999.0, Program.cumulus.Units.TempDPlaces);
-			LowDailyRange = new Record(9999.0, Program.cumulus.Units.TempDPlaces);
+			HighDailyRange = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.TempDPlaces);
+			LowDailyRange = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.TempDPlaces);
 
-			HighRainRate = new Record(-9999.0, Program.cumulus.Units.RainDPlaces);
-			HighHourlyRain = new Record(-9999.0, Program.cumulus.Units.RainDPlaces);
-			HighDailyRain = new Record(-9999.0, Program.cumulus.Units.RainDPlaces);
-			High24hRain = new Record(-9999.0, Program.cumulus.Units.RainDPlaces);
-			HighMonthlyRain = new Record(-9999.0, Program.cumulus.Units.RainDPlaces);
+			HighRainRate = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.RainDPlaces);
+			HighHourlyRain = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.RainDPlaces);
+			HighDailyRain = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.RainDPlaces);
+			High24hRain = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.RainDPlaces);
+			HighMonthlyRain = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.RainDPlaces);
 
 			LongestDry = new Record(0);
 			LongestWet = new Record(0);
 
-			HighWindGust = new Record(-9999.0, Program.cumulus.Units.WindDPlaces);
-			HighWindAvg = new Record(-9999.0, Program.cumulus.Units.WindAvgDPlaces);
-			HighWindRun = new Record(-9999.0, Program.cumulus.Units.WindRunDPlaces);
+			HighWindGust = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.WindDPlaces);
+			HighWindAvg = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.WindAvgDPlaces);
+			HighWindRun = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.WindRunDPlaces);
 
-			HighPressure = new Record(-9999.0, Program.cumulus.Units.PressDPlaces);
-			LowPressure = new Record(9999.0, Program.cumulus.Units.PressDPlaces);
+			HighPressure = new Record(Cumulus.DefaultHiVal, Program.cumulus.Units.PressDPlaces);
+			LowPressure = new Record(Cumulus.DefaultLoVal, Program.cumulus.Units.PressDPlaces);
 		}
 	}
 }

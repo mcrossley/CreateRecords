@@ -26,71 +26,71 @@ namespace CreateRecords
 
 				IniFile ini = new IniFile(filename);
 
-				Recs.HighWindAvg.Value = ini.GetValue("Wind", "Speed", 0.0);
+				Recs.HighWindAvg.Value = ini.GetValue("Wind", "Speed", Cumulus.DefaultHiVal);
 				Recs.HighWindAvg.Time = ini.GetValue("Wind", "SpTime", defTime);
-				Recs.HighWindGust.Value = ini.GetValue("Wind", "Gust", 0.0);
+				Recs.HighWindGust.Value = ini.GetValue("Wind", "Gust", Cumulus.DefaultHiVal);
 				Recs.HighWindGust.Time = ini.GetValue("Wind", "Time", defTime);
-				Recs.HighWindRun.Value = ini.GetValue("Wind", "Windrun", 0.0);
+				Recs.HighWindRun.Value = ini.GetValue("Wind", "Windrun", Cumulus.DefaultHiVal);
 				Recs.HighWindRun.Time = ini.GetValue("Wind", "WindrunTime", defTime);
 				// Temperature
-				Recs.LowTemperature.Value = ini.GetValue("Temp", "Low", 9999.0);
+				Recs.LowTemperature.Value = ini.GetValue("Temp", "Low", Cumulus.DefaultLoVal);
 				Recs.LowTemperature.Time = ini.GetValue("Temp", "LTime", defTime);
-				Recs.HighTemperature.Value = ini.GetValue("Temp", "High", -9999.0);
+				Recs.HighTemperature.Value = ini.GetValue("Temp", "High", Cumulus.DefaultHiVal);
 				Recs.HighTemperature.Time = ini.GetValue("Temp", "HTime", defTime);
-				Recs.LowMaxTemp.Value = ini.GetValue("Temp", "LowMax", 9999.0);
+				Recs.LowMaxTemp.Value = ini.GetValue("Temp", "LowMax", Cumulus.DefaultLoVal);
 				Recs.LowMaxTemp.Time = ini.GetValue("Temp", "LMTime", defTime);
-				Recs.HighMinTemp.Value = ini.GetValue("Temp", "HighMin", -9999.0);
+				Recs.HighMinTemp.Value = ini.GetValue("Temp", "HighMin", Cumulus.DefaultHiVal);
 				Recs.HighMinTemp.Time = ini.GetValue("Temp", "HMTime", defTime);
-				Recs.LowDailyRange.Value = ini.GetValue("Temp", "LowRange", 9999.0);
+				Recs.LowDailyRange.Value = ini.GetValue("Temp", "LowRange", Cumulus.DefaultLoVal);
 				Recs.LowDailyRange.Time = ini.GetValue("Temp", "LowRangeTime", defTime);
-				Recs.HighDailyRange.Value = ini.GetValue("Temp", "HighRange", -999.0);
+				Recs.HighDailyRange.Value = ini.GetValue("Temp", "HighRange", Cumulus.DefaultHiVal);
 				Recs.HighDailyRange.Time = ini.GetValue("Temp", "HighRangeTime", defTime);
 				// Pressure
-				Recs.LowPressure.Value = ini.GetValue("Pressure", "Low", 9999.0);
+				Recs.LowPressure.Value = ini.GetValue("Pressure", "Low", Cumulus.DefaultLoVal);
 				Recs.LowPressure.Time = ini.GetValue("Pressure", "LTime", defTime);
-				Recs.HighPressure.Value = ini.GetValue("Pressure", "High", -9999.0);
+				Recs.HighPressure.Value = ini.GetValue("Pressure", "High", Cumulus.DefaultHiVal);
 				Recs.HighPressure.Time = ini.GetValue("Pressure", "HTime", defTime);
 				// rain
-				Recs.HighRainRate.Value = ini.GetValue("Rain", "High", 0.0);
+				Recs.HighRainRate.Value = ini.GetValue("Rain", "High", Cumulus.DefaultHiVal);
 				Recs.HighRainRate.Time = ini.GetValue("Rain", "HTime", defTime);
-				Recs.HighHourlyRain.Value = ini.GetValue("Rain", "HourlyHigh", 0.0);
+				Recs.HighHourlyRain.Value = ini.GetValue("Rain", "HourlyHigh", Cumulus.DefaultHiVal);
 				Recs.HighHourlyRain.Time = ini.GetValue("Rain", "HHourlyTime", defTime);
-                Recs.HighDailyRain.Value = ini.GetValue("Rain", "DailyHigh", 0.0);
+                Recs.HighDailyRain.Value = ini.GetValue("Rain", "DailyHigh", Cumulus.DefaultHiVal);
                 Recs.HighDailyRain.Time = ini.GetValue("Rain", "HDailyTime", defTime);
-                Recs.High24hRain.Value = ini.GetValue("Rain", "24Hour", 0.0);
+                Recs.High24hRain.Value = ini.GetValue("Rain", "24Hour", Cumulus.DefaultHiVal);
                 Recs.High24hRain.Time = ini.GetValue("Rain", "24HourTime", defTime);
                 Recs.LongestDry.Value = ini.GetValue("Rain", "LongestDryPeriod", 0);
 				Recs.LongestDry.Time = ini.GetValue("Rain", "LongestDryPeriodTime", defTime);
 				Recs.LongestWet.Value = ini.GetValue("Rain", "LongestWetPeriod", 0);
 				Recs.LongestWet.Time = ini.GetValue("Rain", "LongestWetPeriodTime", defTime);
 				// humidity
-				Recs.LowHumidity.Value = ini.GetValue("Humidity", "Low", 999);
+				Recs.LowHumidity.Value = ini.GetValue("Humidity", "Low", (int) Cumulus.DefaultLoVal);
 				Recs.LowHumidity.Time = ini.GetValue("Humidity", "LTime", defTime);
-				Recs.HighHumidity.Value = ini.GetValue("Humidity", "High", -999);
+				Recs.HighHumidity.Value = ini.GetValue("Humidity", "High", (int) Cumulus.DefaultHiVal);
 				Recs.HighHumidity.Time = ini.GetValue("Humidity", "HTime", defTime);
 				// heat index
-				Recs.HighHeatIndex.Value = ini.GetValue("HeatIndex", "High", -999.0);
+				Recs.HighHeatIndex.Value = ini.GetValue("HeatIndex", "High", Cumulus.DefaultHiVal);
 				Recs.HighHeatIndex.Time = ini.GetValue("HeatIndex", "HTime", defTime);
 				// App temp
-				Recs.LowApparant.Value = ini.GetValue("AppTemp", "Low", 999.0);
+				Recs.LowApparant.Value = ini.GetValue("AppTemp", "Low", Cumulus.DefaultLoVal);
 				Recs.LowApparant.Time = ini.GetValue("AppTemp", "LTime", defTime);
-				Recs.HighApparant.Value = ini.GetValue("AppTemp", "High", -999.0);
+				Recs.HighApparant.Value = ini.GetValue("AppTemp", "High", Cumulus.DefaultHiVal);
 				Recs.HighApparant.Time = ini.GetValue("AppTemp", "HTime", defTime);
 				// Dewpoint
-				Recs.LowDewPoint.Value = ini.GetValue("Dewpoint", "Low", 999.0);
+				Recs.LowDewPoint.Value = ini.GetValue("Dewpoint", "Low", Cumulus.DefaultLoVal);
 				Recs.LowDewPoint.Time = ini.GetValue("Dewpoint", "LTime", defTime);
-				Recs.HighDewPoint.Value = ini.GetValue("Dewpoint", "High", -999.0);
+				Recs.HighDewPoint.Value = ini.GetValue("Dewpoint", "High", Cumulus.DefaultHiVal);
 				Recs.HighDewPoint.Time = ini.GetValue("Dewpoint", "HTime", defTime);
-				// wind chill
-				Recs.LowWindChill.Value = ini.GetValue("WindChill", "Low", 999.0);
+				// wind Cumulus.DefaultHiVal
+				Recs.LowWindChill.Value = ini.GetValue("WindChill", "Low", Cumulus.DefaultLoVal);
 				Recs.LowWindChill.Time = ini.GetValue("WindChill", "LTime", defTime);
 				// Feels like temp
-				Recs.LowFeelsLike.Value = ini.GetValue("FeelsLike", "Low", 999.0);
+				Recs.LowFeelsLike.Value = ini.GetValue("FeelsLike", "Low", Cumulus.DefaultLoVal);
 				Recs.LowFeelsLike.Time = ini.GetValue("FeelsLike", "LTime", defTime);
-				Recs.HighFeelsLike.Value = ini.GetValue("FeelsLike", "High", -999.0);
+				Recs.HighFeelsLike.Value = ini.GetValue("FeelsLike", "High", Cumulus.DefaultHiVal);
 				Recs.HighFeelsLike.Time = ini.GetValue("FeelsLike", "HTime", defTime);
 				// Humidex
-				Recs.HighHumidex.Value = ini.GetValue("Humidex", "High", -999.0);
+				Recs.HighHumidex.Value = ini.GetValue("Humidex", "High", Cumulus.DefaultHiVal);
 				Recs.HighHumidex.Time = ini.GetValue("Humidex", "HTime", defTime);
 
 				Program.LogMessage("Completed month.ini file read");
@@ -110,6 +110,7 @@ namespace CreateRecords
 			}
 
 			Program.LogMessage("Writing to month.ini file");
+			Console.WriteLine("Writing to month.ini file...");
 			try
 			{
 				int hourInc = Program.GetHourInc(DateTime.Now);
