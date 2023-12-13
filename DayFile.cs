@@ -13,7 +13,7 @@ namespace CreateRecords
 		public List<Dayfilerec> DayfileRecs = new List<Dayfilerec>();
 
 
-		private string dayFileName = "data" + Path.DirectorySeparatorChar + "dayfile.txt";
+		private readonly string dayFileName = "data" + Path.DirectorySeparatorChar + "dayfile.txt";
 
 		public DayFile()
 		{
