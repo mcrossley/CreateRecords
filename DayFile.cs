@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace CreateRecords
@@ -20,16 +18,6 @@ namespace CreateRecords
 		public DayFile()
 		{
 			// read in the existing day file
-
-			if (File.Exists(dayFileName + ".sav"))
-			{
-				Console.WriteLine("The dayfile.txt backup file dayfile.txt.sav already exists, aborting to prevent overwriting the original data.");
-				Console.WriteLine("Press any key to exit");
-				Console.ReadKey(true);
-				Console.WriteLine("Exiting...");
-				Environment.Exit(1);
-			}
-
 			LoadDayFile();
 		}
 
@@ -353,48 +341,48 @@ namespace CreateRecords
 		public double HighRain24h;
 		public DateTime HighRain24hTime;
 
-        public Dayfilerec()
+		public Dayfilerec()
 		{
-			HighGust = -9999;
+			HighGust = Cumulus.DefaultHiVal;
 			HighGustBearing = 0;
-			LowTemp = 9999;
-			HighTemp = -9999;
-			LowPress = 9999;
-			HighPress = -9999;
-			HighRainRate = -9999;
-			TotalRain = -9999;
-			AvgTemp = -9999;
-			WindRun = -9999;
-			HighAvgWind = -9999;
-			LowHumidity = 9999;
-			HighHumidity = -9999;
-			ET = -9999;
-			SunShineHours = -9999;
-			HighHeatIndex = -9999;
-			HighAppTemp = -9999;
-			LowAppTemp = 9999;
-			HighHourlyRain = -9999;
-			LowWindChill = 9999;
-			HighDewPoint = -9999;
-			LowDewPoint = 9999;
-			DominantWindBearing = 9999;
-			HeatingDegreeDays = -9999;
-			CoolingDegreeDays = -9999;
-			HighSolar = -9999;
-			HighUv = -9999;
-			HighFeelsLike = -9999;
-			LowFeelsLike = 9999;
-			HighHumidex = -9999;
-			HighRain24h = -9999;
+			LowTemp = Cumulus.DefaultLoVal;
+			HighTemp = Cumulus.DefaultHiVal;
+			LowPress = Cumulus.DefaultLoVal;
+			HighPress = Cumulus.DefaultHiVal;
+			HighRainRate = Cumulus.DefaultHiVal;
+			TotalRain = Cumulus.DefaultHiVal;
+			AvgTemp = Cumulus.DefaultHiVal;
+			WindRun = Cumulus.DefaultHiVal;
+			HighAvgWind = Cumulus.DefaultHiVal;
+			LowHumidity = (int) Cumulus.DefaultLoVal;
+			HighHumidity = (int) Cumulus.DefaultHiVal;
+			ET = Cumulus.DefaultHiVal;
+			SunShineHours = Cumulus.DefaultHiVal;
+			HighHeatIndex = Cumulus.DefaultHiVal;
+			HighAppTemp = Cumulus.DefaultHiVal;
+			LowAppTemp = Cumulus.DefaultLoVal;
+			HighHourlyRain = Cumulus.DefaultHiVal;
+			LowWindChill = Cumulus.DefaultLoVal;
+			HighDewPoint = Cumulus.DefaultHiVal;
+			LowDewPoint = Cumulus.DefaultLoVal;
+			DominantWindBearing = (int) Cumulus.DefaultLoVal;
+			HeatingDegreeDays = Cumulus.DefaultHiVal;
+			CoolingDegreeDays = Cumulus.DefaultHiVal;
+			HighSolar =	(int) Cumulus.DefaultHiVal;
+			HighUv = Cumulus.DefaultHiVal;
+			HighFeelsLike = Cumulus.DefaultHiVal;
+			LowFeelsLike = Cumulus.DefaultLoVal;
+			HighHumidex = Cumulus.DefaultHiVal;
+			HighRain24h = Cumulus.DefaultHiVal;
 		}
 
 		public bool HasMissingData()
 		{
-			if (HighHumidex == -9999 || LowFeelsLike == 9999 || HighFeelsLike == -9999 || CoolingDegreeDays == -9999 || HeatingDegreeDays == -9999 ||
-				DominantWindBearing == 9999 || LowDewPoint == 9999 || HighDewPoint == -9999 || LowWindChill == 9999 || HighHourlyRain == -9999 ||
-				LowAppTemp == 9999 || HighAppTemp == -9999 || HighHeatIndex == -9999 || HighHumidity == -9999 || LowHumidity == 9999 ||
-				HighAvgWind == -9999 || AvgTemp == -9999 || HighRainRate == -9999 || LowPress == 9999 || HighPress == -9999 ||
-				HighTemp == -9999 || LowTemp == 9999 || HighGust == -9999 || HighRain24h == -9999
+			if (HighHumidex == Cumulus.DefaultHiVal || LowFeelsLike == Cumulus.DefaultLoVal || HighFeelsLike == Cumulus.DefaultHiVal || CoolingDegreeDays == Cumulus.DefaultHiVal || HeatingDegreeDays == Cumulus.DefaultHiVal ||
+				DominantWindBearing == Cumulus.DefaultLoVal || LowDewPoint == Cumulus.DefaultLoVal || HighDewPoint == Cumulus.DefaultHiVal || LowWindChill == Cumulus.DefaultLoVal || HighHourlyRain == Cumulus.DefaultHiVal ||
+				LowAppTemp == Cumulus.DefaultLoVal || HighAppTemp == Cumulus.DefaultHiVal || HighHeatIndex == Cumulus.DefaultHiVal || HighHumidity == Cumulus.DefaultHiVal || LowHumidity == Cumulus.DefaultLoVal ||
+				HighAvgWind == Cumulus.DefaultHiVal || AvgTemp == Cumulus.DefaultHiVal || HighRainRate == Cumulus.DefaultHiVal || LowPress == Cumulus.DefaultLoVal || HighPress == Cumulus.DefaultHiVal ||
+				HighTemp == Cumulus.DefaultHiVal || LowTemp == Cumulus.DefaultLoVal || HighGust == Cumulus.DefaultHiVal || HighRain24h == Cumulus.DefaultHiVal
 			)
 			{
 				return true;
