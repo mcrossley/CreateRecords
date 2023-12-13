@@ -274,6 +274,9 @@ namespace CreateRecords
 				if (st.Count > idx++ && st[51].Length == 5)
 					rec.HighHumidexTime = GetDateTime(rec.Date, st[51]);
 
+				if (st.Count > idx++ && double.TryParse(st[52], out varDbl))
+					rec.ChillHours = varDbl;
+
 				if (st.Count > idx++ && double.TryParse(st[53], out varDbl))
 					rec.HighRain24h = varDbl;
 
@@ -395,6 +398,7 @@ namespace CreateRecords
 		public DateTime LowFeelsLikeTime;
 		public double HighHumidex;
 		public DateTime HighHumidexTime;
+		public double ChillHours;
 		public double HighRain24h;
 		public DateTime HighRain24hTime;
 
@@ -429,6 +433,7 @@ namespace CreateRecords
 			HighUv = Cumulus.DefaultHiVal;
 			HighFeelsLike = Cumulus.DefaultHiVal;
 			LowFeelsLike = Cumulus.DefaultLoVal;
+			ChillHours = Cumulus.DefaultHiVal;
 			HighHumidex = Cumulus.DefaultHiVal;
 			HighRain24h = Cumulus.DefaultHiVal;
 		}
