@@ -76,17 +76,74 @@ namespace CreateRecords
 				Program.LogMessage("LoadDayFile: No Dayfile found - No entries added to recent daily data list");
 				// add a rcord for yesterday, just so we have something to process,
 				// if it is left at default we will not write it out
-				var newRec = new Dayfilerec();
-				newRec.Date = DateTime.Today.AddDays(-1);
+				var newRec = new Dayfilerec
+				{
+					Date = DateTime.Today.AddDays(-1)
+				};
 				DayfileRecs.Add(newRec);
 			}
 		}
 
+
+		// 0   Date in the form dd/mm/yy (the slash may be replaced by a dash in some cases)
+		// 1  Highest wind gust
+		// 2  Bearing of highest wind gust
+		// 3  Time of highest wind gust
+		// 4  Minimum temperature
+		// 5  Time of minimum temperature
+		// 6  Maximum temperature
+		// 7  Time of maximum temperature
+		// 8  Minimum sea level pressure
+		// 9  Time of minimum pressure
+		// 10  Maximum sea level pressure
+		// 11  Time of maximum pressure
+		// 12  Maximum rainfall rate
+		// 13  Time of maximum rainfall rate
+		// 14  Total rainfall for the day
+		// 15  Average temperature for the day
+		// 16  Total wind run
+		// 17  Highest average wind speed
+		// 18  Time of highest average wind speed
+		// 19  Lowest humidity
+		// 20  Time of lowest humidity
+		// 21  Highest humidity
+		// 22  Time of highest humidity
+		// 23  Total evapotranspiration
+		// 24  Total hours of sunshine
+		// 25  High heat index
+		// 26  Time of high heat index
+		// 27  High apparent temperature
+		// 28  Time of high apparent temperature
+		// 29  Low apparent temperature
+		// 30  Time of low apparent temperature
+		// 31  High hourly rain
+		// 32  Time of high hourly rain
+		// 33  Low wind chill
+		// 34  Time of low wind chill
+		// 35  High dew point
+		// 36  Time of high dew point
+		// 37  Low dew point
+		// 38  Time of low dew point
+		// 39  Dominant wind bearing
+		// 40  Heating degree days
+		// 41  Cooling degree days
+		// 42  High solar radiation
+		// 43  Time of high solar radiation
+		// 44  High UV Index
+		// 45  Time of high UV Index
+		// 46  High Feels like
+		// 47  Time of high feels like
+		// 48  Low feels like
+		// 49  Time of low feels like
+		// 50  High Humidex
+		// 51  Time of high Humidex
+		// 52  Chill hours
+		// 53  Max Rain 24 hours
+		// 54  Max Rain 24 hours Time
+
 		private Dayfilerec ParseDayFileRec(string data)
 		{
 			var st = new List<string>(Regex.Split(data, CultureInfo.CurrentCulture.TextInfo.ListSeparator));
-			double varDbl;
-			int varInt;
 			int idx = 0;
 
 			var rec = new Dayfilerec();
@@ -109,7 +166,7 @@ namespace CreateRecords
 				rec.TotalRain = Convert.ToDouble(st[idx++]);
 				rec.AvgTemp = Convert.ToDouble(st[idx++]);
 
-				if (st.Count > idx++ && double.TryParse(st[16], out varDbl))
+				if (st.Count > idx++ && double.TryParse(st[16], out double varDbl))
 					rec.WindRun = varDbl;
 
 				if (st.Count > idx++ && double.TryParse(st[17], out varDbl))
@@ -118,7 +175,7 @@ namespace CreateRecords
 				if (st.Count > idx++ && st[18].Length == 5)
 					rec.HighAvgWindTime = GetDateTime(rec.Date, st[18]);
 
-				if (st.Count > idx++ && int.TryParse(st[19], out varInt))
+				if (st.Count > idx++ && int.TryParse(st[19], out int varInt))
 					rec.LowHumidity = varInt;
 
 				if (st.Count > idx++ && st[20].Length == 5)
@@ -226,7 +283,7 @@ namespace CreateRecords
 			}
 			catch (Exception ex)
 			{
-				Program.LogMessage($"ParseDayFileRec: Error at record {idx} - {ex.Message}");
+				//Program.LogMessage($"ParseDayFileRec: Error at record {idx} - {ex.Message}");
 				var e = new Exception($"Error at record {idx} = \"{st[idx - 1]}\" - {ex.Message}");
 				throw e;
 			}
