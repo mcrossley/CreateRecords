@@ -21,7 +21,7 @@ namespace CreateRecords
 		{
 
 			TextWriterTraceListener myTextListener = new TextWriterTraceListener($"MXdiags{Path.DirectorySeparatorChar}CreateRecords-{DateTime.Now:yyyyMMdd-HHmmss}.txt", "CMlog");
-			Trace.Listeners.Add(myTextListener);
+			System.Diagnostics.Trace.Listeners.Add(myTextListener);
 			Trace.AutoFlush = true;
 
 			defConsoleColour = Console.ForegroundColor;
